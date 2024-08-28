@@ -73,9 +73,9 @@ struct RouterList {
   private routers: RouterInfo[] = [
     new RouterInfo('pages/MainAPI', '主要API'),
     new RouterInfo('pages/ItemPage', '商品列表'),
-    new RouterInfo('pages/TaskProgress', '任务进度条'),
+    new RouterInfo('pages/TaskProgress', '任务进度（rdb实现）'),
     new RouterInfo('pages/Net', '网络请求'),
-    new RouterInfo('pages/DB', '数据持久化'),
+    new RouterInfo('pages/DB', '数据持久化')
   ]
 
   build() {
