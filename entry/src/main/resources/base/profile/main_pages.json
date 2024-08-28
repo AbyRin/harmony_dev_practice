@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/MainAPI",
+    "pages/ItemPage",
+    "pages/TaskProgress",
+    "pages/Net",
+    "pages/DB"
+  ]
+}
