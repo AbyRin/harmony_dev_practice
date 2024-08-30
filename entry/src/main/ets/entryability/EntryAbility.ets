@@ -3,15 +3,21 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 // 工具类
 import PreferencesUtil from '../common/util/PreferencesUtil'
-import TaskModel from '../model/TaskModel'
+import RdbService from '../common/util/rdb/RdbService'
+import { relationalStore } from '@kit.ArkData';
 
 export default class EntryAbility extends UIAbility {
+    public rdbService: RdbService = new RdbService();
+    public rdbStore?: relationalStore.RdbStore;
+
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     // 应用启动时，加载Preferences（可加载多个）
     await PreferencesUtil.loadPreferences(this.context, 'MyPreferences')
-    // 初始化任务表
-    TaskModel.initTaskDB(this.context)
+    // 实例化 RdbStore
+    this.rdbService.init(this.context).then((res: relationalStore.RdbStore) => {
+      this.rdbStore = res
+    })
   }
 
   onDestroy(): void {

@@ -1,7 +1,4 @@
-import { Task, TaskCount } from '../../viewmodel/TaskInfo'
-// 引入RdbUtil
-import RdbUtil from '../../common/util/RdbUtil'
-import TaskModel from '../../model/TaskModel'
+import { Task, TaskCount } from '../../model/TaskModel'
 
 // 公共样式：任务卡片
 @Styles function taskCard() {
@@ -21,7 +18,6 @@ import TaskModel from '../../model/TaskModel'
   .decoration({type:TextDecorationType.LineThrough, color: Color.White})
   .fontColor($r('app.color.PRIMARY_GRAY_2'))
 }
-
 
 // 组件：任务进度
 @Component
@@ -76,6 +72,9 @@ export struct TaskListCard {
   aboutToAppear(): void {
     // 查询任务列表
     console.log('testTag', '初始化组件，查询任务列表')
+
+    this.entry
+
     TaskModel.getTaskList()
       .then(res => this.taskList = res)
     // 更新任务状态
@@ -245,16 +244,16 @@ struct TaskInfoDialog {
 }
 
 // 临时按钮：创建任务表
-@Component
-export struct RdbTableCreateButton {
-  build() {
-    Button('创建任务表')
-      .onClick(() => {
-        const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS TASK (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT NOT NULL)'
-        RdbUtil.executeSql(SQL_CREATE_TABLE)
-          .then(() => {
-            this
-          })
-      })
-  }
-}
+// @Component
+// export struct RdbTableCreateButton {
+//   build() {
+//     Button('创建任务表')
+//       .onClick(() => {
+//         const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS TASK (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT NOT NULL)'
+//         RdbUtil.executeSql(SQL_CREATE_TABLE)
+//           .then(() => {
+//             this
+//           })
+//       })
+//   }
+// }

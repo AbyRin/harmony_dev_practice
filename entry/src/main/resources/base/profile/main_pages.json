@@ -2,9 +2,10 @@
   "src": [
     "pages/Index",
     "pages/MainAPI",
-    "pages/ItemPage",
+    "pages/ProductList",
     "pages/TaskProgress",
     "pages/Net",
-    "pages/DB"
+    "pages/DB",
+    "pages/WebRequest"
   ]
 }

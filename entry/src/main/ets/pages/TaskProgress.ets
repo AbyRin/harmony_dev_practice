@@ -1,7 +1,8 @@
-// 快捷笔记：状态管理
-import { Task, TaskCount } from '../viewmodel/TaskInfo'
-import { TaskProgressCard, TaskListCard, RdbTableCreateButton } from '../common/components/TaskProgressComponents'
+import { Task, TaskCount } from '../model/TaskModel'
+import { TaskProgressCard, TaskListCard } from '../common/components/TaskProgressComponents'
+import TaskService from '../common/service/TaskService'
 
+// 快捷笔记：状态管理
 // @State 用于：父组件
 // @Prop 用于：子组件，单向同步
 // @Link 用于：子组件，双向同步
@@ -14,6 +15,13 @@ struct TaskProgressByRdb {
   @Provide taskCount: TaskCount = new TaskCount(0, 0)
   @Provide task: Task = new Task(0, '')
 
+  aboutToAppear(): void {
+    // 实例化
+    const taskService = new TaskService()
+    // 获取任务数统计信息
+    this.taskCount = taskService.getTaskCount()
+  }
+
   build() {
     Column({space: 10}) {
       // 1.任务进度组件
@@ -21,9 +29,6 @@ struct TaskProgressByRdb {
 
       // 2.任务列表组件
       TaskListCard()
-
-      // 临时按钮：创建任务表
-      RdbTableCreateButton()
     }
     .width('100%')
     .height('100%')

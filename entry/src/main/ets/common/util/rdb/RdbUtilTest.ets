@@ -1,7 +1,7 @@
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { relationalStore } from '@kit.ArkData';  // API 12，似乎要真机才能调试
+import { relationalStore } from '@kit.ArkData';  // API 12，似乎要真机才能调试，不确定
 
 // RdbUtils 工具包
 export default class RdbUtil {
